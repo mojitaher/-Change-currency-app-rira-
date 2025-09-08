@@ -1,74 +1,50 @@
-# Currency Converter 💱
+# 💱 Currency Converter
 
 A **responsive currency converter** built with **Next.js 13**, **TypeScript**, and **Tailwind CSS**.  
-Supports **English and Persian** languages with automatic **text direction switching (LTR/RTL)**.
+Supports **English and Persian**, with automatic **LTR/RTL** switching.
 
 ---
 
-## 🌟 Features
+## Features
 
 - Convert between **Dollar and Rial** dynamically
-- Display results formatted with **commas**
-- Show **validation warnings** for invalid inputs (zero or empty)
-- **Bilingual support**: English & Persian
-- Fully **responsive design** for desktop and mobile
+- Display results with **comma formatting**
+- Show validation warnings for invalid inputs
+- **Bilingual support** (English & Persian)
+- Fully **responsive** for mobile & desktop
 
 ---
 
-## 🛠 Technologies
+## Technologies
 
-- Next.js 13
-- React
-- TypeScript
-- Tailwind CSS
-- React-i18next
+Next.js 13 | React | TypeScript | Tailwind CSS | React-i18next
 
 ---
 
-## 📂 Project Structure
-
-├── app/
-│ ├── page.tsx # Main page
-│ └── layout.tsx # Root layout with LangProvider
-├── context/
-│ └── LanguageContext.tsx # Language management
-├── i18n.ts # i18next configuration
-├── public/locales/ # Translation files
-└── components/ # React components (Currency Converter, Language Switcher)
-
-yaml
-Copy code
-
----
-
-## 🚀 Getting Started
-
-1. Install dependencies:
+## Quick Start
 
 ```bash
 npm install
-# or
-yarn install
-Run in development mode:
-
-bash
-Copy code
 npm run dev
 # or
+yarn install
 yarn dev
-Open your browser at http://localhost:3000
+Open http://localhost:3000 in your browser.
 
-🎨 Design
-Clean and modern UI using Tailwind CSS
+Project Structure
+bash
+Copy code
+app/           # Main pages & layout
+context/       # Language management
+components/    # Currency converter & language switcher
+i18n.ts        # Translation configuration
+public/locales/ # JSON translation files
+Notes
+All text comes from JSON translation files
 
-Responsive layout for desktop and mobile
+Results are formatted with commas
 
-📌 Notes
-All text is loaded from JSON translation files
-
-Calculation results are formatted with commas
-
-All components are client components for i18next integration
+All components are client components for proper i18next integration
 
 yaml
 Copy code
