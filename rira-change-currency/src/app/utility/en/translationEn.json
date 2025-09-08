@@ -1,0 +1,18 @@
+{
+  "title": "💱 Currency Converter",
+  "currentPrice": "Current Price",
+  "dollarPrice": "Dollar Price",
+  "amountInDollar": "Amount in Dollar",
+  "amountInRial": "Amount in Rial",
+  "placeholderDollor": "Enter Dollor Price",
+  "placeholderAmount": "Amount of money",
+  "rial": "Rial",
+  "calculate": "Calculate",
+  "exchange": "Exchange",
+  "warnings": {
+    "price": "Price cannot be empty or start with 0",
+    "amount": "Amount cannot be empty or start with 0"
+  },
+  "appButton": "Go To App",
+  "result": "Result"
+}

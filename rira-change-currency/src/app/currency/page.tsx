@@ -1,8 +1,12 @@
 "use client";
+import { useLang } from "@/context/contexLang";
 import { usePrice } from "@/context/contextPrice";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function ChangeCurrency() {
+  const { t } = useTranslation();
+  const { lang, toggleLang } = useLang();
   const { price, setPrice } = usePrice();
   const [isDollor, setIsDollor] = useState(true);
   const [amount, setAmount] = useState<string>("");
@@ -31,24 +35,34 @@ export default function ChangeCurrency() {
 
   return (
     <>
+      <button
+        onClick={toggleLang}
+        className="flex items-center gap-2 px-3 py-2 rounded-full
+                 bg-gradient-to-r from-green-500 to-teal-600  border border-gray-300 
+                 text-white cursor-pointer
+                 hover:bg-green-50 hover:border-green-400 
+                 shadow-sm transition-all duration-200 m-5"
+      >
+        {lang == "en" ? "en" : "fa"}
+      </button>
       <div className="bg-green-700 text-white text-xl font-bold p-4 rounded-t-lg">
-        💱 Change Currency
+        {t("title")}
       </div>
 
       <div className="bg-white shadow-lg rounded-b-lg p-6 flex flex-col gap-4">
         <h1 className="text-lg font-semibold text-gray-700">
-          Current Price: <span className="text-green-600">${price}</span>
+          {t("currentPrice")}: <span className="text-green-600">${price}</span>
         </h1>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          {/* Price Input */}
+          {/* Price */}
           <div className="flex flex-col gap-2">
             <label className="text-sm font-medium text-gray-700">
-              Dollar Price
+              {t("dollarPrice")}
             </label>
             <input
               type="number"
-              placeholder="Enter Dollar Price"
+              placeholder={t("placeholderDollor")}
               onChange={(e) => {
                 const value = e.target.value;
                 if (!value || value.startsWith("0")) setPrice(null);
@@ -61,25 +75,23 @@ export default function ChangeCurrency() {
               }`}
             />
             {!price && (
-              <p className="text-red-500 text-sm mt-1">
-                Price cannot be empty or start with 0
-              </p>
+              <p className="text-red-500 text-sm mt-1">{t("warnings.price")}</p>
             )}
           </div>
-          {/* Amount Input */}
+          {/* amount */}
           <div className="flex flex-col gap-2">
             <label
               htmlFor="amount"
               className="text-sm font-medium text-gray-700"
             >
-              {isDollor ? "Amount in Dollar" : "Amount in Rial"}
+              {isDollor ? t("amountInDollar") : t("amountInRial")}
             </label>
             <div className="flex flex-col sm:flex-row items-stretch gap-2">
               <input
                 id="amount"
                 type="number"
                 value={amount}
-                placeholder="Enter amount"
+                placeholder={t("placeholderAmount")}
                 onChange={(e) => setAmount(e.target.value)}
                 className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
               />
@@ -88,17 +100,16 @@ export default function ChangeCurrency() {
                   isDollor ? "bg-green-600" : "bg-blue-700"
                 }`}
               >
-                {isDollor ? "$" : "Rial"}
+                {isDollor ? "$" : t("rial")}
               </span>
             </div>
             {(!amount || amount.toString().startsWith("0")) && (
               <p className="text-red-500 text-sm mt-1">
-                Amount cannot be empty or start with 0
+                {t("warnings.amount")}
               </p>
             )}
           </div>
 
-          {/* Buttons */}
           <div className="flex flex-col sm:flex-row gap-3 mt-2">
             <button
               disabled={!amount || amount.toString().startsWith("0") || !price}
@@ -109,7 +120,7 @@ export default function ChangeCurrency() {
                   : "bg-green-600 hover:bg-green-700 text-white"
               }`}
             >
-              Calculate
+              {t("calculate")}
             </button>
 
             <button
@@ -117,18 +128,17 @@ export default function ChangeCurrency() {
               onClick={handleChange}
               className="flex-1 border border-green-600 text-green-600 hover:bg-amber-50 font-semibold py-2 px-4 rounded-lg transition"
             >
-              Exchange
+              {t("exchange")}
             </button>
           </div>
 
-          {/* Result */}
           {resault !== null && (
             <div className="mt-4 bg-gray-100 border border-gray-300 rounded-lg p-4 text-center text-lg font-semibold text-gray-800">
-              Result:{" "}
+              {t("result")}:{" "}
               <span
                 className={`${isDollor ? "text-green-600" : "text-blue-700"}`}
               >
-                {resault.toLocaleString()} {isDollor ? "Rial" : "$"}
+                {resault.toLocaleString()} {isDollor ? t("rial") : "$"}
               </span>
             </div>
           )}
